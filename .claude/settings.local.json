@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(ls -la \"/Users/akarjaza/Library/Mobile Documents/com~apple~CloudDocs/Documents/Final/Ba7s/Codes/\" 2>&1 && find \"/Users/akarjaza/Library/Mobile Documents/com~apple~CloudDocs/Documents/Final/Ba7s/\" -type f 2>&1 | head -30)",
-      "Read(//Users/akarjaza/Library/Mobile Documents/com~apple~CloudDocs/Documents/Final/Ba7s/**)"
-    ]
-  }
-}
