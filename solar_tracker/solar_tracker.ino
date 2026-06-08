@@ -1,224 +1,142 @@
-#include <Servo.h>
-#include <SoftwareWire.h>
-#include <LiquidCrystal_SoftI2C.h>
+#include "DHT.h"
 
-// =====================
-// SERVOS
-// =====================
-Servo servoH;
-Servo servoV;
+#define DHTPIN 2
+#define DHTTYPE DHT11
 
-// =====================
-// LDR PINS
-// =====================
-const int A0_pin = A0; // Top Right
-const int A1_pin = A1; // Bottom Left
-const int A2_pin = A2; // Bottom Right
-const int A3_pin = A3; // Top Left
+DHT dht(DHTPIN, DHTTYPE);
 
-// =====================
-// VOLTAGE SENSOR
-// =====================
-const int voltagePin = A4;
+int buzzerPin = 8;
 
-// =====================
-// MODE SWITCH
-// D4 -> switch -> GND
-// =====================
-const int modeSwitch = 4;
+int led_green = 13;
+int led_yellow = 12;
+int led_red = 11;
 
-// =====================
-// POSITIONS
-// =====================
-int hPos = 90;
-const int hMin = 10;
-const int hMax = 170;
+int command;
 
-int vPos = 50;
-const int vUp = 60;
-const int vDown = 10;
+int s_humidity = 50;
+int s_temp = 30;
 
-// =====================
-// TUNING
-// =====================
-const int tolerance = 60;
-const int stepSize = 3;
-
-// =====================
-// LCD
-// =====================
-#define CUSTOM_SDA 11
-#define CUSTOM_SCL 12
-
-SoftwareWire myWire(CUSTOM_SDA, CUSTOM_SCL);
-LiquidCrystal_I2C lcd(0x27, 16, 2, &myWire);
-
-// ======================================================
-// SMOOTH ANALOG READ
-// ======================================================
-int smoothRead(int pin) {
-
-  long total = 0;
-
-  for (int i = 0; i < 10; i++) {
-    total += analogRead(pin);
-    delay(2);
-  }
-
-  return total / 10;
-}
+int ldr_pin = A5;
 
 void setup() {
-
   Serial.begin(9600);
 
-  // Switch input
-  pinMode(modeSwitch, INPUT_PULLUP);
+  dht.begin();
 
-  // LCD
-  lcd.begin();
-  lcd.backlight();
+  pinMode(led_green, OUTPUT);
+  pinMode(led_yellow, OUTPUT);
+  pinMode(led_red, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
 
-  // SAFE START POSITION
-  servoV.write(vPos);
-  servoH.write(hPos);
-
-  // ATTACH SERVOS
-  servoH.attach(9);
-  servoV.attach(10, 500, 1500);
-
-  delay(500);
-
-  lcd.clear();
 }
 
 void loop() {
+  tone(buzzerPin, 50);   // low frequency
+  delay(200);             // short beep
 
-  // =====================
-  // READ SWITCH
-  // =====================
-  bool dualAxis = (digitalRead(modeSwitch) == LOW);
+  noTone(buzzerPin);
+  delay(2000);            // long silence
 
-  // =====================
-  // READ LDRs (SMOOTHED)
-  // =====================
-  int tr = smoothRead(A0_pin);
-  int bl = smoothRead(A1_pin);
-  int br = smoothRead(A2_pin);
-  int tl = smoothRead(A3_pin);
+//   int lightValue = analogRead(ldr_pin);
+//   Serial.print("Light Intensity: ");
+//   Serial.println(lightValue);
 
-  // =====================
-  // DEBUG
-  // =====================
-  Serial.print("TL: ");
-  Serial.print(tl);
+//   // Condition: It is DARK 
+//   if(lightValue < 500){
+//     digitalWrite(led_red, HIGH); // Turn ON Red LED
+//     digitalWrite(led_green, LOW); // Turn OFF Green LED
+//     Serial.print("-> System Status: NIGHT MODE (Red ON)");
+//   }
+//   else {
+//     digitalWrite(led_red, LOW); // Turn OFF Red LED
+//     digitalWrite(led_green, HIGH); // Turn ON Green LED
+//     Serial.print("-> System Status: DAY MODE (Green ON) ");
+//   }
+// Serial.println("----------------------------------------------");
 
-  Serial.print(" | TR: ");
-  Serial.print(tr);
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
 
-  Serial.print(" | BL: ");
-  Serial.print(bl);
+  if (humidity > s_humidity && temperature > s_temp) {
+    digitalWrite(led_red, HIGH);
+    digitalWrite(led_yellow, HIGH);
+    digitalWrite(led_green, LOW);
+    Serial.print("High temp: ");
+    Serial.print(temperature);
+    Serial.print(" High Humidity: ");
+    Serial.print(humidity);
+    Serial.println();
 
-  Serial.print(" | BR: ");
-  Serial.println(br);
-
-  // =====================
-  // AVERAGES
-  // =====================
-  int topAvg = (tl + tr) / 2;
-  int botAvg = (bl + br) / 2;
-
-  int leftAvg = (tl + bl) / 2;
-  int rightAvg = (tr + br) / 2;
-
-  // =====================
-  // ERRORS
-  // =====================
-  int vertError = botAvg - topAvg;
-  int horizError = leftAvg - rightAvg;
-
-  // =====================
-  // HORIZONTAL TRACKING
-  // =====================
-  if (abs(horizError) > tolerance) {
-
-    if (leftAvg > rightAvg) {
-      hPos -= stepSize;
-    }
-
-    else {
-      hPos += stepSize;
-    }
+  } else if (humidity > s_humidity) {
+    digitalWrite(led_red, LOW);
+    digitalWrite(led_yellow, HIGH);
+    digitalWrite(led_green, LOW);
+    Serial.print("High Humidity: ");
+    Serial.print(humidity);
+    Serial.println();
+  } else if (temperature > s_temp) {
+    digitalWrite(led_red, HIGH);
+    digitalWrite(led_yellow, LOW);
+    digitalWrite(led_green, LOW);
+    Serial.print("High Temp: ");
+    Serial.print(temperature);
+    Serial.println();
+  } else {
+    digitalWrite(led_red, LOW);
+    digitalWrite(led_yellow, LOW);
+    digitalWrite(led_green, HIGH);
+    Serial.print("You are good. Temp: ");
+    Serial.print(temperature);
+    Serial.print(" + Humidity: ");
+    Serial.print(humidity);
+    Serial.println();
   }
 
-  // LIMITS
-  hPos = constrain(hPos, hMin, hMax);
+  delay(2000);
 
-  // WRITE ONLY IF CHANGED
-  static int lastH = -1;
 
-  if (hPos != lastH) {
-    servoH.write(hPos);
-    lastH = hPos;
-  }
+  // Serial.print("Humidity: ");
+  // Serial.print(humidity);
+  // Serial.print("%  Temperature: ");
+  // Serial.print(temperature);
+  // Serial.println(" C");
 
-  // =====================
-  // VERTICAL TRACKING
-  // ONLY IN DUAL AXIS MODE
-  // =====================
-  if (dualAxis) {
 
-    if (abs(vertError) > tolerance) {
 
-      if (botAvg > topAvg) {
-        vPos -= stepSize;
-      }
 
-      else {
-        vPos += stepSize;
-      }
-    }
+  // if (Serial.available() > 0 ) {
+  //   command = Serial.read(); 
+  //   if (command == '1') {
+  //     digitalWrite(led_green, HIGH);
+  //     Serial.println("GREEN LED IS ON");
+  //     // delay(1000);
+  //   }
+  //   if (command == '0') {
+  //     digitalWrite(led_green, LOW);
+  //     Serial.println("GREEN LED IS OFF");
+  //     // delay(1000);
+  //   }
+  // }
 
-    // LIMITS
-    vPos = constrain(vPos, vDown, vUp);
+  // digitalWrite(led_green, HIGH);
+  // delay(300);
 
-    // WRITE ONLY IF CHANGED
-    static int lastV = -1;
 
-    if (vPos != lastV) {
-      servoV.write(vPos);
-      lastV = vPos;
-    }
-  }
+  // digitalWrite(led_yellow, HIGH);
+  // delay(300);
 
-  // =====================
-  // VOLTAGE SENSOR
-  // =====================
-  int sensorValue = analogRead(voltagePin);
+  // digitalWrite(led_red, HIGH);
+  // delay(300);
 
-  float voltage =
-    sensorValue * (5.0 / 1023.0) * 5.0;
 
-  // =====================
-  // LCD
-  // =====================
-  lcd.setCursor(0, 0);
-  lcd.print("Volt:");
-  lcd.print(voltage, 2);
-  lcd.print("V   ");
+  // digitalWrite(led_green, LOW);
+  // delay(300);
 
-  lcd.setCursor(0, 1);
 
-  if (dualAxis) {
-    lcd.print("Dual Axis     ");
-  }
+  // digitalWrite(led_yellow, LOW);
+  // delay(300);
 
-  else {
-    lcd.print("Single Axis   ");
-  }
-
-  // =====================
-  // SPEED CONTROL
-  // =====================
-  delay(5);
+  // digitalWrite(led_red, LOW);
+  // delay(300);
+  
 }
