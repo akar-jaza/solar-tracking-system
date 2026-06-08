@@ -1,14 +1,33 @@
-Date,Time,Weather Condition,V_tracker (V),I_tracker (mA),P_tracker (mW),V_fixed (V),I_fixed (mA),P_fixed (mW),Improvement (%)
-2026-05-XX,09:00,Clear,,,,,,,
-2026-05-XX,09:30,Clear,,,,,,,
-2026-05-XX,10:00,Clear,,,,,,,
-2026-05-XX,10:30,Clear,,,,,,,
-2026-05-XX,11:00,Clear,,,,,,,
-2026-05-XX,11:30,Clear,,,,,,,
-2026-05-XX,12:00,Clear,,,,,,,
-2026-05-XX,12:30,Clear,,,,,,,
-2026-05-XX,13:00,Clear,,,,,,,
-2026-05-XX,13:30,Clear,,,,,,,
-2026-05-XX,14:00,Clear,,,,,,,
-2026-05-XX,14:30,Clear,,,,,,,
-2026-05-XX,15:00,Clear,,,,,,,
+Date,Time,Weather,TL,TR,BL,BR,hPos,vPos,Voltage_V,Notes
+2026-05-18,~15:00,Cloudy,18,19,16,20,170,33,4.45,"Cloudy afternoon, reading 161"
+2026-05-18,~15:00,Cloudy,18,19,16,20,170,33,5.33,"Cloudy afternoon, reading 241"
+2026-05-18,~15:00,Cloudy,18,19,15,20,170,33,4.64,"Cloudy afternoon, reading 321"
+2026-05-18,~15:00,Cloudy,19,20,15,22,170,24,4.67,"Cloudy afternoon, reading 401"
+2026-05-18,~15:00,Cloudy,18,19,13,19,170,24,4.45,"Cloudy afternoon, reading 481"
+2026-05-18,~15:00,Cloudy,18,19,13,19,170,24,4.52,"Cloudy afternoon, reading 561"
+2026-05-18,~15:00,Cloudy,18,19,17,21,170,33,5.25,"Cloudy afternoon, reading 81"
+2026-05-20,06:15-06:32,Clear (morning),9,10,10,11,45,60,4.37,"Morning sun rising east, reading 1001"
+2026-05-20,06:15-06:32,Clear (morning),9,9,12,12,45,60,4.47,"Morning sun rising east, reading 1501"
+2026-05-20,06:15-06:32,Clear (morning),9,10,8,8,45,57,5.6,"Morning sun rising east, reading 2001"
+2026-05-20,06:15-06:32,Clear (morning),9,11,8,10,45,57,5.03,"Morning sun rising east, reading 2501"
+2026-05-20,06:15-06:32,Clear (morning),11,11,10,11,45,57,5.43,"Morning sun rising east, reading 3001"
+2026-05-20,06:15-06:32,Clear (morning),13,14,12,14,45,57,4.33,"Morning sun rising east, reading 3501"
+2026-05-20,06:15-06:32,Clear (morning),10,11,10,11,45,57,4.52,"Morning sun rising east, reading 4001"
+2026-05-20,06:15-06:32,Clear (morning),12,12,11,12,45,57,5.03,"Morning sun rising east, reading 4501"
+2026-05-20,06:15-06:32,Clear (morning),11,11,11,11,45,57,5.57,"Morning sun rising east, reading 5001"
+2026-05-20,06:15-06:32,Clear (morning),10,10,11,11,45,60,4.81,"Morning sun rising east, reading 501"
+2026-05-20,06:15-06:32,Clear (morning),9,10,10,10,45,57,4.42,"Morning sun rising east, reading 5501"
+2026-05-20,06:15-06:32,Clear (morning),10,10,10,11,45,57,4.45,"Morning sun rising east, reading 6001"
+2026-05-21,~14:20,Clear (afternoon),9,11,12,15,93,47,6.99,"Afternoon tracking westward, reading 1"
+2026-05-21,~14:20,Clear (afternoon),12,12,10,12,96,20,6.77,"Afternoon tracking westward, reading 121"
+2026-05-21,~14:20,Clear (afternoon),12,13,11,12,102,20,6.72,"Afternoon tracking westward, reading 181"
+2026-05-21,~14:20,Clear (afternoon),13,15,12,13,114,29,6.6,"Afternoon tracking westward, reading 241"
+2026-05-21,~14:20,Clear (afternoon),14,14,12,15,120,35,6.57,"Afternoon tracking westward, reading 301"
+2026-05-21,~14:20,Clear (afternoon),10,9,12,12,120,32,6.94,"Afternoon tracking westward, reading 361"
+2026-05-21,~14:20,Clear (afternoon),13,11,12,13,120,32,6.77,"Afternoon tracking westward, reading 421"
+2026-05-21,~14:20,Clear (afternoon),14,15,12,14,120,32,6.6,"Afternoon tracking westward, reading 481"
+2026-05-21,~14:20,Clear (afternoon),14,16,13,14,123,32,6.55,"Afternoon tracking westward, reading 541"
+2026-05-21,~14:20,Clear (afternoon),14,15,12,13,123,35,6.6,"Afternoon tracking westward, reading 601"
+2026-05-21,~14:20,Clear (afternoon),8,9,9,7,96,17,7.09,"Afternoon tracking westward, reading 61"
+2026-05-21,~14:20,Clear (afternoon),12,11,12,13,123,32,6.79,"Afternoon tracking westward, reading 661"
+2026-05-21,~14:20,Clear (afternoon),12,11,11,12,123,32,6.87,"Afternoon tracking westward, reading 721"
