@@ -1,33 +1,22 @@
-Date,Time,Weather,TL,TR,BL,BR,hPos,vPos,Voltage_V,Notes
-2026-05-18,~15:00,Cloudy,18,19,16,20,170,33,4.45,"Cloudy afternoon, reading 161"
-2026-05-18,~15:00,Cloudy,18,19,16,20,170,33,5.33,"Cloudy afternoon, reading 241"
-2026-05-18,~15:00,Cloudy,18,19,15,20,170,33,4.64,"Cloudy afternoon, reading 321"
-2026-05-18,~15:00,Cloudy,19,20,15,22,170,24,4.67,"Cloudy afternoon, reading 401"
-2026-05-18,~15:00,Cloudy,18,19,13,19,170,24,4.45,"Cloudy afternoon, reading 481"
-2026-05-18,~15:00,Cloudy,18,19,13,19,170,24,4.52,"Cloudy afternoon, reading 561"
-2026-05-18,~15:00,Cloudy,18,19,17,21,170,33,5.25,"Cloudy afternoon, reading 81"
-2026-05-20,06:15-06:32,Clear (morning),9,10,10,11,45,60,4.37,"Morning sun rising east, reading 1001"
-2026-05-20,06:15-06:32,Clear (morning),9,9,12,12,45,60,4.47,"Morning sun rising east, reading 1501"
-2026-05-20,06:15-06:32,Clear (morning),9,10,8,8,45,57,5.6,"Morning sun rising east, reading 2001"
-2026-05-20,06:15-06:32,Clear (morning),9,11,8,10,45,57,5.03,"Morning sun rising east, reading 2501"
-2026-05-20,06:15-06:32,Clear (morning),11,11,10,11,45,57,5.43,"Morning sun rising east, reading 3001"
-2026-05-20,06:15-06:32,Clear (morning),13,14,12,14,45,57,4.33,"Morning sun rising east, reading 3501"
-2026-05-20,06:15-06:32,Clear (morning),10,11,10,11,45,57,4.52,"Morning sun rising east, reading 4001"
-2026-05-20,06:15-06:32,Clear (morning),12,12,11,12,45,57,5.03,"Morning sun rising east, reading 4501"
-2026-05-20,06:15-06:32,Clear (morning),11,11,11,11,45,57,5.57,"Morning sun rising east, reading 5001"
-2026-05-20,06:15-06:32,Clear (morning),10,10,11,11,45,60,4.81,"Morning sun rising east, reading 501"
-2026-05-20,06:15-06:32,Clear (morning),9,10,10,10,45,57,4.42,"Morning sun rising east, reading 5501"
-2026-05-20,06:15-06:32,Clear (morning),10,10,10,11,45,57,4.45,"Morning sun rising east, reading 6001"
-2026-05-21,~14:20,Clear (afternoon),9,11,12,15,93,47,6.99,"Afternoon tracking westward, reading 1"
-2026-05-21,~14:20,Clear (afternoon),12,12,10,12,96,20,6.77,"Afternoon tracking westward, reading 121"
-2026-05-21,~14:20,Clear (afternoon),12,13,11,12,102,20,6.72,"Afternoon tracking westward, reading 181"
-2026-05-21,~14:20,Clear (afternoon),13,15,12,13,114,29,6.6,"Afternoon tracking westward, reading 241"
-2026-05-21,~14:20,Clear (afternoon),14,14,12,15,120,35,6.57,"Afternoon tracking westward, reading 301"
-2026-05-21,~14:20,Clear (afternoon),10,9,12,12,120,32,6.94,"Afternoon tracking westward, reading 361"
-2026-05-21,~14:20,Clear (afternoon),13,11,12,13,120,32,6.77,"Afternoon tracking westward, reading 421"
-2026-05-21,~14:20,Clear (afternoon),14,15,12,14,120,32,6.6,"Afternoon tracking westward, reading 481"
-2026-05-21,~14:20,Clear (afternoon),14,16,13,14,123,32,6.55,"Afternoon tracking westward, reading 541"
-2026-05-21,~14:20,Clear (afternoon),14,15,12,13,123,35,6.6,"Afternoon tracking westward, reading 601"
-2026-05-21,~14:20,Clear (afternoon),8,9,9,7,96,17,7.09,"Afternoon tracking westward, reading 61"
-2026-05-21,~14:20,Clear (afternoon),12,11,12,13,123,32,6.79,"Afternoon tracking westward, reading 661"
-2026-05-21,~14:20,Clear (afternoon),12,11,11,12,123,32,6.87,"Afternoon tracking westward, reading 721"
+sample_id,test_type,date,time,weather,TL,TR,BL,BR,Lavg,Ravg,Herror,hPos_deg,vPos_deg,voltage_V,notes
+1,fixed,2026-05-21,14:20,clear,0,0,0,0,0,0,0,90,50,6.50,fixed-position reference
+2,fixed,2026-05-21,14:21,clear,0,0,0,0,0,0,0,90,50,6.48,fixed-position reference
+3,fixed,2026-05-21,14:22,clear,0,0,0,0,0,0,0,90,50,6.52,fixed-position reference
+4,fixed,2026-05-21,14:23,clear,0,0,0,0,0,0,0,90,50,6.33,fixed-position reference
+5,fixed,2026-05-21,14:24,clear,0,0,0,0,0,0,0,90,50,6.33,fixed-position reference
+6,fixed,2026-05-21,14:25,clear,0,0,0,0,0,0,0,90,50,6.57,fixed-position reference
+7,fixed,2026-05-21,14:26,clear,0,0,0,0,0,0,0,90,50,6.35,fixed-position reference
+8,fixed,2026-05-21,14:27,clear,0,0,0,0,0,0,0,90,50,6.55,fixed-position reference
+9,fixed,2026-05-21,14:28,clear,0,0,0,0,0,0,0,90,50,6.40,fixed-position reference
+10,tracking,2026-05-21,14:20,clear,9,11,12,15,10,13,-3,93,47,6.99,dual-axis active
+11,tracking,2026-05-21,14:21,clear,8,11,11,14,9,12,-3,96,44,7.01,dual-axis active
+12,tracking,2026-05-21,14:22,clear,9,10,12,14,10,12,-2,96,41,7.01,dual-axis active
+13,tracking,2026-05-21,14:23,clear,9,11,12,15,10,13,-3,99,38,6.99,dual-axis active
+14,tracking,2026-05-21,14:24,clear,9,11,13,13,11,12,-1,99,35,7.04,dual-axis active
+15,tracking,2026-05-21,14:25,clear,11,12,9,10,10,11,-1,96,17,6.82,dual-axis active
+16,tracking,2026-05-21,14:26,clear,10,9,10,10,10,9,1,102,20,7.01,dual-axis active
+17,tracking,2026-05-21,14:27,clear,14,14,13,14,13,14,-1,120,35,6.57,dual-axis active
+18,tracking,2026-05-21,14:28,clear,12,12,13,13,12,12,0,120,32,6.72,dual-axis active
+19,tracking,2026-05-21,14:29,clear,14,14,13,14,13,14,-1,120,32,6.60,dual-axis active
+20,tracking,2026-05-21,14:30,clear,14,14,13,13,13,13,0,123,35,6.60,dual-axis active
+21,tracking,2026-05-21,14:31,clear,11,8,11,12,11,10,1,123,32,6.94,dual-axis active
